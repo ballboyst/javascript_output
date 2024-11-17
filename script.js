@@ -1,13 +1,24 @@
 'use strict';
 
-// イテレーション
-const numbers = [1,2,3,5];
-for (const num in numbers) {
-    console.log(`この表示は${num}回目です`)
-};
+// // イテレーション
+// const numbers = [1,2,3,5];
+// for (const num in numbers) {
+//     console.log(`この表示は${num}回目です`)
+// };
 
-// 要素の追加
-let element= document.createElement("p");
-element.textContent="要素を追加しました";
-document.body.appendChild(element);
+// const human = {HP:100,AT:10,DF:5,MP:3};
+// for (const status in human) {
+//     console.log(`ステータス${status}の値は${human[status]}`);
+// };
 
+// // 要素の追加
+// let element= document.createElement("p");
+// element.textContent="要素を追加しました";
+// document.body.appendChild(element);
+
+const num = 3
+if (num>5) {
+    console.log("big");
+}else{
+    console.log("little");
+}
