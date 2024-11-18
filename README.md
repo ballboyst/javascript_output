@@ -58,5 +58,17 @@ array.push(); 末尾に追加
 array.unshift();　先頭に追加
 array.pop();　末尾の要素を削除
 array.shift();　先頭の要素を削除
+array.splice(1,0,'cat'); 第１引数はインデックス、第２引数が0なら第３引数を追加
+array.splice(3,1)　第１引数はインデックス、第２引数が１なら削除
 
-ｓ
+### 配列の調査
+array.indexOf('dog'); 配列から引数に一致するインデックスを取得する
+
+### 配列から新しい配列を作る
+const <配列> = <配列>.map((要素)=>加工処理);
+例
+const numbers = [1,2,3];
+const numbers2 = numbers.map((num)=>num*2);
+
+### 配列から要素を抽出する
+const <配列> = <配列>.filter((要素) => 抽出条件);
