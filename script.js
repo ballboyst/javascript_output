@@ -15,10 +15,5 @@
 // let element= document.createElement("p");
 // element.textContent="要素を追加しました";
 // document.body.appendChild(element);
-
-const num = 3
-if (num>5) {
-    console.log("big");
-}else{
-    console.log("little");
-}
+const array = [1,2,'dog',3,4,'cat'];
+console.log(array);

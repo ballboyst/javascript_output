@@ -49,4 +49,14 @@ for (const num in numbers) {
 };
 だとnumには0,1,2,3が代入されていく（キーを取得するため）
 
-### 要素の生成
+### 配列（array）、中身のことは要素（element）という
+const array = [1,2,'dog',3,4,'cat'];
+console.log(array[2]);
+
+### 配列への追加削除
+array.push(); 末尾に追加
+array.unshift();　先頭に追加
+array.pop();　末尾の要素を削除
+array.shift();　先頭の要素を削除
+
+ｓ
