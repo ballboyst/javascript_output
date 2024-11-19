@@ -15,21 +15,33 @@
 // let element= document.createElement("p");
 // element.textContent="要素を追加しました";
 // document.body.appendChild(element);
-const array = [1,2,'dog',3,4,'cat'];
-let cat = array.indexOf("cat");
-if (cat != -1) {
-    array.splice(cat,0,"neko");
-}
-console.log(array);
-let dog = array.indexOf("dog");
-if (dog != -1) {
-    let baw = array.splice(dog,1)
-    console.log(`${baw}の鳴き声はワン`)
-};
 
-const numbers = [1,2,3];
-console.log(numbers);
-const numbers2 = numbers.map((num)=>num**2);
-console.log(numbers2);
-const numbers3 = numbers2.filter((num) => num%2===1);
-console.log(numbers3);
+// const array = [1,2,'dog',3,4,'cat'];
+// let cat = array.indexOf("cat");
+// if (cat != -1) {
+//     array.splice(cat,0,"neko");
+// }
+// console.log(array);
+// let dog = array.indexOf("dog");
+// if (dog != -1) {
+//     let baw = array.splice(dog,1)
+//     console.log(`${baw}の鳴き声はワン`)
+// };
+
+// const numbers = [1,2,3];
+// console.log(numbers);
+// const numbers2 = numbers.map((num)=>num**2);
+// console.log(numbers2);
+// const numbers3 = numbers2.filter((num) => num%2===1);
+// console.log(numbers3);
+
+const etoList = ['ネズミ', 'ウシ', 'トラ', 'ウサギ'];
+// const numList = [1, 2, 3, 4, 5, 6, 7, 8];
+const ul = document.getElementById('list');
+for (const eto of etoList) {
+    // if (num % 2 == 0) {
+      const li = document.createElement('li');
+      li.textContent = eto;
+      ul.appendChild(li);
+    }
+//   }
