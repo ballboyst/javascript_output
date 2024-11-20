@@ -35,13 +35,12 @@
 // const numbers3 = numbers2.filter((num) => num%2===1);
 // console.log(numbers3);
 
-const etoList = ['ネズミ', 'ウシ', 'トラ', 'ウサギ'];
-// const numList = [1, 2, 3, 4, 5, 6, 7, 8];
+const numList = [1, 2, 3, 4, 5, 6, 7, 8];
 const ul = document.getElementById('list');
-for (const eto of etoList) {
-    // if (num % 2 == 0) {
-      const li = document.createElement('li');
-      li.textContent = eto;
-      ul.appendChild(li);
-    }
-//   }
+const print = numList.filter((num)=>num%2==0);
+const list = print.map((number)=>{
+    const li = document.createElement('li');
+    // console.log(number);
+    li.textContent= "No." + number;
+    ul.appendChild(li);
+})
