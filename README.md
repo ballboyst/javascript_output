@@ -35,7 +35,7 @@ for (let <変数名> = <初期値>; <条件式> <更新式>) {
     <処理文>};
 
 ### 反復処理(for-ofとfor-in)
-#### for-ofはイテレーションで要素を取得する。オブジェクトの要素をループする。
+#### for-ofはイテレーションで要素を取得する。配列の要素をループする。
 #### 要素は配列の中の値をこと
 #### for-inはイテレーションでプロパティ名（キー）を取得する。オブジェクトのプロパティをループする
 #### プロパティはオブジェクトに関連付けられたキーと値のペアのこと。オブジェクトの状態などを表す
@@ -72,3 +72,25 @@ const numbers2 = numbers.map((num)=>num*2);
 
 ### 配列から要素を抽出する
 const <配列> = <配列>.filter((要素) => 抽出条件);
+
+### オブジェクトのプロパティを指定(ドット記法とブラケット記法)
+const obj = {a:'A', b:'B', c:'C' };
+console.log(obj.a);      // A
+console.log(obj['a']);   // A
+
+const prop = 'a'
+console.log(obj.prop);      // undefined
+console.log(obj[prop]);     // A    これはconsole.log(obj['a'])となるから
+
+#### オブジェクトの使用例
+const obj = { HP: '100', MP: '10', DF: '20' };
+for (const prop in obj) {
+    console.log(`私の${prop}は${obj[prop]}です`)
+};
+
+#### 関数定義
+function <関数名>(引数) {
+    <処理>
+};
+// アロー関数なら以下
+const <関数名> (引数) => {処理};
