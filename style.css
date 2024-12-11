@@ -1,0 +1,11 @@
+#calendar{
+    width: 200px;
+    font-size: 17px;
+}
+#title{
+    padding-left: 50px;
+    text-align: left;
+}
+.is-disabled{
+    text-align: right;
+}

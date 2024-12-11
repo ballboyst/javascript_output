@@ -14,7 +14,7 @@ let dayCount = 1
 let calendarHtml = ''
 
 // カレンダーの年月表示
-calendarHtml += `<p id='title'>${month+1}月 ${year}</p>`;
+calendarHtml += `<a id='title'>${month+1}月　${year}</a>`;
 calendarHtml += '<table>'
 
 // 曜日の行を作成
@@ -24,23 +24,23 @@ for (let dayNum = 0; dayNum<weeks.length; dayNum++) {
     }; // for文終了時点で<td>日</td> <td>月</td>　...とういうふうにテーブルデータが作られている
 
 // 週ごとの行を作成
-for (let weekly = 0; weekly < 5; weekly++){
+for (let weekly = 0; weekly < 6; weekly++){
     calendarHtml += '<tr>'
     // 週の中の曜日に対応した日にちを作成
     for (let days = 0; days < 7; days++){
         if (weekly == 0 && days < startDay){
             let num = lastMonthendDayCount - days 
-            calendarHtml += '<td class="is-disabled>' + num + '</td>'
+            calendarHtml += '<td class="is-disabled">' + num + '</td>'
         } else if (weekly == 0 && days >= startDay) {
             let num = dayCount
             calendarHtml += '<td class="is-disabled">' + num + '</td>'
             dayCount ++
-        } else if (dayCount > endDayCount) { // 翌月の日にち表示
-            let num = dayCount - endDayCount
-            calendarHtml += '<td class=disabled>' + num + '</td>'
-            dayCount ++
-        } else {
-            calendarHtml += '<td>' + dayCount +'</td>' // 当月の日にち表示
+        // } else if (dayCount > endDayCount) { // 翌月の日にち表示
+        //     let num = dayCount - endDayCount
+        //     calendarHtml += '<td class="is-disabled">' + num + '</td>'
+        //     dayCount ++
+        } else if (dayCount <= endDayCount ) {
+            calendarHtml += '<td class="is-disabled">' + dayCount +'</td>' // 当月の日にち表示
             dayCount ++
         }
     }
