@@ -13,6 +13,16 @@ console.log(today);
 console.log(lastMonthendDayCount);
 let dayCount = 1
 let calendarHtml = ''
+const userInput = window.prompt("カレンダーコマンドを入力してください");
+const parts = userInput.split(" ");
+const cmd = parts[0];
+const arg = parts[1];
+const inputMonth = parts[2];
+// 条件分岐をここで書いても書く参照日の大元が今月になっているのでうまくいかない。もっと源流から変更する必要がある。
+// if (cmd === "cal" && arg === "-m" && inputMonth < 13 && inputMonth > 0) {
+//     const specifiedMonth = inputMonth
+
+// }
 
 // カレンダーの年月表示
 calendarHtml += `<a id='title'>${month+1}月　${year}</a>`;
