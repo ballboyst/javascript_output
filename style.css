@@ -6,6 +6,10 @@
     padding-left: 50px;
     text-align: left;
 }
+#mark{
+    background-color: black;
+    color: white;
+}
 .is-disabled{
     text-align: right;
 }

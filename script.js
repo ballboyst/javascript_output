@@ -8,7 +8,8 @@ const endDayCount = endDate.getDate(); // 今月末の日にち
 const lastMonthEndDate = new Date(year,month,0) // 先月末
 const lastMonthendDayCount = lastMonthEndDate.getDate() // 先月末の日にち
 const startDay = startDate.getDay(); // 今月初日の曜日に対応した数値（0~6）
-console.log(lastMonthEndDate);
+const today = date.getDate();
+console.log(today);
 console.log(lastMonthendDayCount);
 let dayCount = 1
 let calendarHtml = ''
@@ -28,9 +29,11 @@ for (let weekly = 0; weekly < 6; weekly++){
     calendarHtml += '<tr>'
     // 週の中の曜日に対応した日にちを作成
     for (let days = 0; days < 7; days++){
-        if (weekly == 0 && days < startDay){
-            let num = lastMonthendDayCount - days 
-            calendarHtml += '<td class="is-disabled">' + num + '</td>'
+        if (dayCount == today) {
+            calendarHtml += '<td id="mark">' + dayCount + '</td>'
+            dayCount ++
+        }else if (weekly == 0 && days < startDay){
+            calendarHtml += '<td class="is-disabled">' + "" + '</td>'
         } else if (weekly == 0 && days >= startDay) {
             let num = dayCount
             calendarHtml += '<td class="is-disabled">' + num + '</td>'
