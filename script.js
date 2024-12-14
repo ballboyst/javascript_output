@@ -28,11 +28,12 @@ if (inputMonth === undefined || (inputMonth <13 && inputMonth >0)) {
     calendarHtml += '<table>'
 
     // 曜日の行を作成
+    calendarHtml += '<tr>'
     for (let dayNum = 0; dayNum<weeks.length; dayNum++) {
         calendarHtml += '<td>' +weeks[dayNum]
             '</td>'
         }; // for文終了時点で<td>日</td> <td>月</td>　...とういうふうにテーブルデータが作られている
-
+    calendarHtml += '</tr>'
     // 週ごとの行を作成
     for (let weekly = 0; weekly < 6; weekly++){
         calendarHtml += '<tr>'
