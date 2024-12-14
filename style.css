@@ -1,9 +1,9 @@
 #calendar{
-    width: 200px;
-    font-size: 17px;
+    width: 212px;
+    font-size: 20px;
 }
 #title{
-    padding-left: 50px;
+    padding-left: 65px;
     text-align: left;
 }
 #mark{
@@ -12,4 +12,11 @@
 }
 .is-disabled{
     text-align: right;
+}
+body{
+    font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+}
+td{
+    margin: 2px 2px 2% 2px ;
+    padding: 2px 2px 2px 2px ;
 }
