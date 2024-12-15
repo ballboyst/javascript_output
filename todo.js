@@ -3,6 +3,13 @@ console.log("表示確認");
 const todoList = [];
 
  const addButton = document.getElementById('add');
- const task = document.getElementById('taskName').textContent
+ const text = document.getElementById('taskName');
+ const task = document.getElementById('task');
 
-addButton.addEventListener('click',()=>{console.log(123)});
+addButton.addEventListener('click', function(){
+    let li = document.createElement('li');
+    let anchor = document.createElement('a');
+    anchor.textContent = text.value;
+    li.append(anchor);
+    task.append(li);
+});
