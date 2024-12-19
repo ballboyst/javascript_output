@@ -23,6 +23,21 @@ addButton.addEventListener('click', function(){
         anchor.textContent = num;
         let updateButton = document.createElement('button');
         updateButton.textContent = '編集';
+        // 編集ボタンのイベントリスナー
+        updateButton.addEventListener('click', function() {
+            let updatedTask = window.prompt("編集してください");
+            if (updatedTask) {
+                let aElement = ul.querySelector('a');
+                let currentText = aElement.textContent;
+                console.log(`現在のタスクは${currentText}です`);
+                let position = todoList.indexOf(currentText);
+                console.log(`現在の要素番号は${num}です`);
+                console.log(`取得した配列の要素番号は${position}です`);
+                todoList[position] = updatedTask;
+                aElement.textContent = updatedTask;
+                };
+            }
+        );
         let deleteButton = document.createElement('button');
         deleteButton.textContent = '削除';
         // 削除ボタンのイベントリスナー
@@ -39,35 +54,3 @@ addButton.addEventListener('click', function(){
         text.value = "";
     }
 });
-
-//         ul.append(check);
-//         ul.append(anchor);
-//         ul.append(updateButton);
-//         ul.append(deleteButton);
-//         task.append(ul);
-//         text.value = "";
-//         }
-// });
-
-// // delete機能
-// buttons = document.querySelectorAll('button');
-// for (number = 0; number < buttons.length; number ++){
-//     buttons[number]=addEventListener('click',function(){
-//         this.parent.remove();
-//     })
-// };
-
-// // 削除ボタンのイベントリスナー
-// deleteButton.addEventListener('click', function() {
-//     ul.remove(); // ul要素を削除
-//     todoList.splice(todoList.indexOf(num), 1); // todoListから削除
-// });
-
-// ul.append(check);
-// ul.append(anchor);
-// ul.append(updateButton);
-// ul.append(deleteButton);
-// task.append(ul);
-// text.value = "";
-// }
-// });
