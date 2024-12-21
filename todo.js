@@ -1,10 +1,9 @@
 "Use strict";
 console.log("表示確認");
 const todoList = [];
-
- const addButton = document.getElementById('add');
- const text = document.getElementById('taskName');
- const task = document.getElementById('task');
+const addButton = document.getElementById('add');
+const text = document.getElementById('taskName');
+const task = document.getElementById('task');
 
 // create機能
 addButton.addEventListener('click', function(){
@@ -13,28 +12,31 @@ addButton.addEventListener('click', function(){
     ul.forEach(ul => ul.remove());  // 表示を更新するために繰り返し処理でul要素を削除
     const text = document.getElementById('taskName');
     console.log(`入力値は${text.value}`);    //debug
-    todoList.push(text.value);
-    console.log(`todoリストは${todoList}`);  // debug
+    const obj = {
+        todo: text.value,
+        checkd: false
+    };
+    console.log(obj);
+    todoList.push(obj);
+    console.log(todoList);  // debug
     for (num of todoList) {
         let ul = document.createElement('ul');
         let check = document.createElement('input');
         check.setAttribute('type','checkbox');
         let anchor = document.createElement('a');
-        anchor.textContent = num;
+        anchor.textContent = num.todo;
         let updateButton = document.createElement('button');
         updateButton.textContent = '編集';
         updateButton.setAttribute("id","block");
         // 編集ボタンのイベントリスナー
         updateButton.addEventListener('click', function() {
-            let updatedTask = window.prompt("編集してください");
+            let aElement = ul.querySelector('a');
+            let currentText = aElement.textContent;
+            let updatedTask = window.prompt("編集してください", currentText);
             if (updatedTask) {
-                let aElement = ul.querySelector('a');
-                let currentText = aElement.textContent;
                 console.log(`現在のタスクは${currentText}です`);
-                let position = todoList.indexOf(currentText);
-                console.log(`現在の要素番号は${num}です`);
-                console.log(`取得した配列の要素番号は${position}です`);
-                todoList[position] = updatedTask;
+                let position = todoList.findIndex(task => task.todo === currentText);
+                todoList[position].todo = updatedTask;
                 aElement.textContent = updatedTask;
                 };
             }
@@ -55,3 +57,5 @@ addButton.addEventListener('click', function(){
         text.value = "";
     }
 });
+input = document.querySelector('input');
+console.log(input.checked);
