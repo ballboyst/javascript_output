@@ -1,0 +1,9 @@
+body{
+    text-align: center;
+    width: 50vw;
+}
+ul{text-align: left;}
+#block{
+    margin-right:0.2rem;
+    margin-left: 0.2rem;
+}

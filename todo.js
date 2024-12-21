@@ -10,7 +10,7 @@ const todoList = [];
 addButton.addEventListener('click', function(){
     let ul = document.querySelectorAll('ul');
     console.log(`ul要素は${ul}`);    //debug
-    ul.forEach(ul => ul.remove());
+    ul.forEach(ul => ul.remove());  // 表示を更新するために繰り返し処理でul要素を削除
     const text = document.getElementById('taskName');
     console.log(`入力値は${text.value}`);    //debug
     todoList.push(text.value);
@@ -23,6 +23,7 @@ addButton.addEventListener('click', function(){
         anchor.textContent = num;
         let updateButton = document.createElement('button');
         updateButton.textContent = '編集';
+        updateButton.setAttribute("id","block");
         // 編集ボタンのイベントリスナー
         updateButton.addEventListener('click', function() {
             let updatedTask = window.prompt("編集してください");
@@ -40,12 +41,12 @@ addButton.addEventListener('click', function(){
         );
         let deleteButton = document.createElement('button');
         deleteButton.textContent = '削除';
+        deleteButton.setAttribute("id","block");
         // 削除ボタンのイベントリスナー
         deleteButton.addEventListener('click', function() {
             ul.remove(); // ul要素を削除
             todoList.splice(todoList.indexOf(num), 1); // todoListから削除
         });
-
         ul.append(check);
         ul.append(anchor);
         ul.append(updateButton);
