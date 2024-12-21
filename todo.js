@@ -14,7 +14,7 @@ addButton.addEventListener('click', function(){
     console.log(`入力値は${text.value}`);    //debug
     const obj = {
         todo: text.value,
-        checkd: false
+        checked: false
     };
     console.log(obj);
     todoList.push(obj);
@@ -23,6 +23,12 @@ addButton.addEventListener('click', function(){
         let ul = document.createElement('ul');
         let check = document.createElement('input');
         check.setAttribute('type','checkbox');
+        // チェックボックスのイベントリスナー
+        check.addEventListener('change', function(){
+            let position = todoList.findIndex(task => task.todo === num.todo);
+            todoList[position].checked = check.checked;
+            }
+        );
         let anchor = document.createElement('a');
         anchor.textContent = num.todo;
         let updateButton = document.createElement('button');
@@ -50,12 +56,15 @@ addButton.addEventListener('click', function(){
             todoList.splice(todoList.indexOf(num), 1); // todoListから削除
         });
         ul.append(check);
+        const indexNumber = todoList.findIndex(task => task.todo === anchor.textContent);
+        if (todoList[indexNumber].checked === true){
+            check.checked = true
+            };
         ul.append(anchor);
+        console.log(anchor);
         ul.append(updateButton);
         ul.append(deleteButton);
         task.append(ul);
         text.value = "";
     }
 });
-input = document.querySelector('input');
-console.log(input.checked);
