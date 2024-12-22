@@ -11,7 +11,7 @@ const taskCount = () => {
     let uncomplatedTask = allTask - complatedTask;
     let detail = `全てのタスク：${allTask}　　完了済み：${complatedTask}　　未完了：${uncomplatedTask}`;
     let taskCountLine = document.getElementById('taskCount');
-    taskCountLine.append(detail);
+    taskCountLine.textContent = detail;
 };
 
 // create機能
@@ -36,6 +36,7 @@ addButton.addEventListener('click', function(){
         check.addEventListener('change', function(){
             let position = todoList.findIndex(task => task.todo === num.todo);
             todoList[position].checked = check.checked;
+            taskCount();
             }
         );
         let anchor = document.createElement('a');
@@ -63,6 +64,7 @@ addButton.addEventListener('click', function(){
         deleteButton.addEventListener('click', function() {
             ul.remove(); // ul要素を削除
             todoList.splice(todoList.indexOf(num), 1); // todoListから削除
+            taskCount();
         });
         ul.append(check);
         const indexNumber = todoList.findIndex(task => task.todo === anchor.textContent);
