@@ -1,41 +1,27 @@
+// READ機能のメソッドを作り、CUD機能にREADのメソッドを入れて画面更新処理を行う。つまり、タスク集計メソッドもREADメソッド内に入れる。
+
 "Use strict";
 console.log("表示確認");
 const todoList = [];
 const addButton = document.getElementById('add');
 const text = document.getElementById('taskName');
 const task = document.getElementById('task');
-// タスクの数を取得するメソッド
-const taskCount = () => {
-    let allTask = todoList.length;
-    let complatedTask = todoList.filter(completed => completed.checked == true).length;
-    let uncomplatedTask = allTask - complatedTask;
-    let detail = `全てのタスク：${allTask}　　完了済み：${complatedTask}　　未完了：${uncomplatedTask}`;
-    let taskCountLine = document.getElementById('taskCount');
-    taskCountLine.textContent = detail;
-};
-
-// create機能
-addButton.addEventListener('click', function(){
+// READ機能
+const readFunction = () => {
     let ul = document.querySelectorAll('ul');
     console.log(`ul要素は${ul}`);    //debug
     ul.forEach(ul => ul.remove());  // 表示を更新するために繰り返し処理でul要素を削除
-    const text = document.getElementById('taskName');
-    console.log(`入力値は${text.value}`);    //debug
-    const obj = {
-        todo: text.value,
-        checked: false
-    };
-    console.log(obj);
-    todoList.push(obj);
-    console.log(todoList);  // debug
-    for (num of todoList) {
+    for (num of todoList) {     // ulを作成
         let ul = document.createElement('ul');
         let check = document.createElement('input');
         check.setAttribute('type','checkbox');
         // チェックボックスのイベントリスナー
         check.addEventListener('change', function(){
-            let position = todoList.findIndex(task => task.todo === num.todo);
+            let aElement = ul.querySelector('a');
+            let currentText = aElement.textContent;
+            let position = todoList.findIndex(task => task.todo === currentText);
             todoList[position].checked = check.checked;
+            console.log(todoList);  // debug
             taskCount();
             }
         );
@@ -62,9 +48,11 @@ addButton.addEventListener('click', function(){
         deleteButton.setAttribute("id","block");
         // 削除ボタンのイベントリスナー
         deleteButton.addEventListener('click', function() {
-            ul.remove(); // ul要素を削除
-            todoList.splice(todoList.indexOf(num), 1); // todoListから削除
-            taskCount();
+            let aElement = ul.querySelector('a');
+            let currentText = aElement.textContent;
+            let position = todoList.findIndex(task => task.todo === currentText);
+            todoList.splice(position, 1); // todoListから削除
+            readFunction();
         });
         ul.append(check);
         const indexNumber = todoList.findIndex(task => task.todo === anchor.textContent);
@@ -80,5 +68,30 @@ addButton.addEventListener('click', function(){
 
         taskCount();
     }
+
+}
+
+// タスクの数を取得するメソッド
+const taskCount = () => {
+    let allTask = todoList.length;
+    let complatedTask = todoList.filter(completed => completed.checked == true).length;
+    let uncomplatedTask = allTask - complatedTask;
+    let detail = `全てのタスク：${allTask}　　完了済み：${complatedTask}　　未完了：${uncomplatedTask}`;
+    let taskCountLine = document.getElementById('taskCount');
+    taskCountLine.textContent = detail;
+};
+
+// create機能
+addButton.addEventListener('click', function(){
+    const text = document.getElementById('taskName');
+    console.log(`入力値は${text.value}`);    //debug
+    const obj = {
+        todo: text.value,
+        checked: false
+    };
+    console.log(obj);
+    todoList.push(obj);
+    console.log(todoList);  // debug
+    readFunction();
 });
 
