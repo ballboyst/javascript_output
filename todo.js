@@ -4,6 +4,15 @@ const todoList = [];
 const addButton = document.getElementById('add');
 const text = document.getElementById('taskName');
 const task = document.getElementById('task');
+// タスクの数を取得するメソッド
+const taskCount = () => {
+    let allTask = todoList.length;
+    let complatedTask = todoList.filter(completed => completed.checked == true).length;
+    let uncomplatedTask = allTask - complatedTask;
+    let detail = `全てのタスク：${allTask}　　完了済み：${complatedTask}　　未完了：${uncomplatedTask}`;
+    let taskCountLine = document.getElementById('taskCount');
+    taskCountLine.append(detail);
+};
 
 // create機能
 addButton.addEventListener('click', function(){
@@ -66,5 +75,8 @@ addButton.addEventListener('click', function(){
         ul.append(deleteButton);
         task.append(ul);
         text.value = "";
+
+        taskCount();
     }
 });
+
