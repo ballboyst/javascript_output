@@ -1,11 +1,18 @@
-// READ機能のメソッドを作り、CUD機能にREADのメソッドを入れて画面更新処理を行う。つまり、タスク集計メソッドもREADメソッド内に入れる。
-
 "Use strict";
 console.log("表示確認");
 const todoList = [];
 const addButton = document.getElementById('add');
 const text = document.getElementById('taskName');
 const task = document.getElementById('task');
+
+
+// todoList配列から要素番号を調べるメソッド
+const getTaskPosition = (ul) => {
+    let aElement = ul.querySelector('a');
+    let currentText = aElement.textContent;
+    return todoList.findIndex(task => task.todo === currentText);
+};
+
 // READ機能
 const readFunction = () => {
     let ul = document.querySelectorAll('ul');
@@ -15,11 +22,11 @@ const readFunction = () => {
         let ul = document.createElement('ul');
         let check = document.createElement('input');
         check.setAttribute('type','checkbox');
+
         // チェックボックスのイベントリスナー
         check.addEventListener('change', function(){
-            let aElement = ul.querySelector('a');
-            let currentText = aElement.textContent;
-            let position = todoList.findIndex(task => task.todo === currentText);
+            let position = getTaskPosition(ul);
+            console.log(position);
             todoList[position].checked = check.checked;
             console.log(todoList);  // debug
             taskCount();
@@ -30,27 +37,25 @@ const readFunction = () => {
         let updateButton = document.createElement('button');
         updateButton.textContent = '編集';
         updateButton.setAttribute("id","block");
+
         // 編集ボタンのイベントリスナー
         updateButton.addEventListener('click', function() {
-            let aElement = ul.querySelector('a');
-            let currentText = aElement.textContent;
-            let updatedTask = window.prompt("編集してください", currentText);
+            let position = getTaskPosition(ul);
+            let displayText = todoList[position].todo;
+            let updatedTask = window.prompt("編集してください", displayText);
             if (updatedTask) {
-                console.log(`現在のタスクは${currentText}です`);
-                let position = todoList.findIndex(task => task.todo === currentText);
                 todoList[position].todo = updatedTask;
-                aElement.textContent = updatedTask;
+                anchor.textContent = updatedTask;
                 };
             }
         );
         let deleteButton = document.createElement('button');
         deleteButton.textContent = '削除';
         deleteButton.setAttribute("id","block");
+
         // 削除ボタンのイベントリスナー
         deleteButton.addEventListener('click', function() {
-            let aElement = ul.querySelector('a');
-            let currentText = aElement.textContent;
-            let position = todoList.findIndex(task => task.todo === currentText);
+            let position = getTaskPosition(ul);
             todoList.splice(position, 1); // todoListから削除
             readFunction();
         });
