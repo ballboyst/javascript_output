@@ -55,10 +55,20 @@ const readFunction = () => {
 
         // 削除ボタンのイベントリスナー
         deleteButton.addEventListener('click', function() {
-            let position = getTaskPosition(ul);
-            todoList.splice(position, 1); // todoListから削除
-            readFunction();
-        });
+            let dialog = document.getElementById('dialog');
+            dialog.showModal();
+                let okButton = document.getElementById('okButton');
+                let cancelButton = document.getElementById('cancelButton');
+                okButton.onclick = () => {
+                    let position = getTaskPosition(ul);
+                    todoList.splice(position, 1); // todoListから削除
+                    dialog.close();
+                    readFunction();
+                };
+                cancelButton.onclick = () => {
+                    dialog.close();
+                };
+            });
         ul.append(check);
         const indexNumber = todoList.findIndex(task => task.todo === anchor.textContent);
         if (todoList[indexNumber].checked === true){
