@@ -42,13 +42,29 @@ const readFunction = () => {
         updateButton.addEventListener('click', function() {
             let position = getTaskPosition(ul);
             let displayText = todoList[position].todo;
-            let updatedTask = window.prompt("編集してください", displayText);
-            if (updatedTask) {
+            let form = document.createElement('input');
+            let recordButton = document.createElement('button');
+            recordButton.textContent = '保存';
+            ul.replaceChild(form, anchor);
+            ul.replaceChild(recordButton, updateButton);
+            // let updatedTask = window.prompt("編集してください", displayText);
+            // if (updatedTask) {
+            //     todoList[position].todo = updatedTask;
+            //     anchor.textContent = updatedTask;
+            //     };
+
+            recordButton.addEventListener('click', function(){
+                form.setAttribute('placeholder','displayText');
+                let updatedTask = form;
+                console.log(updatedTask);
                 todoList[position].todo = updatedTask;
                 anchor.textContent = updatedTask;
-                };
-            }
-        );
+                ul.replaceChild(anchor, form);
+                ul.replaceChild(updateButton, recordButton);
+                readFunction();
+                }
+            );
+        });
         let deleteButton = document.createElement('button');
         deleteButton.textContent = '削除';
         deleteButton.setAttribute("id","block");
