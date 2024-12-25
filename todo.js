@@ -41,18 +41,15 @@ const readFunction = () => {
         // 編集ボタンのイベントリスナー
         updateButton.addEventListener('click', function() {
             let position = getTaskPosition(ul);
-            let displayText = todoList[position].todo;
             let form = document.createElement('input');
+            form.value = todoList[position].todo;
             let recordButton = document.createElement('button');
             recordButton.textContent = '保存';
+            let updateCancelButton = document.createElement('button');
+            updateCancelButton.textContent = 'キャンセル';
             ul.replaceChild(form, anchor);
             ul.replaceChild(recordButton, updateButton);
-            // let updatedTask = window.prompt("編集してください", displayText);
-            // if (updatedTask) {
-            //     todoList[position].todo = updatedTask;
-            //     anchor.textContent = updatedTask;
-            //     };
-
+            ul.replaceChild(updateCancelButton, deleteButton);
             recordButton.addEventListener('click', function(){
                 let updatedTask = form.value;
                 console.log(updatedTask);
@@ -60,9 +57,12 @@ const readFunction = () => {
                 anchor.textContent = updatedTask;
                 ul.replaceChild(anchor, form);
                 ul.replaceChild(updateButton, recordButton);
+                ul.replaceChild(deleteButton, updateCancelButton);
                 readFunction();
-                }
-            );
+                })
+            updateCancelButton.addEventListener('click', function(){
+                readFunction();
+            });
         });
         let deleteButton = document.createElement('button');
         deleteButton.textContent = '削除';
