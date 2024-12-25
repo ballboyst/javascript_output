@@ -54,8 +54,7 @@ const readFunction = () => {
             //     };
 
             recordButton.addEventListener('click', function(){
-                form.setAttribute('placeholder','displayText');
-                let updatedTask = form;
+                let updatedTask = form.value;
                 console.log(updatedTask);
                 todoList[position].todo = updatedTask;
                 anchor.textContent = updatedTask;
