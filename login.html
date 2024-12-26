@@ -4,27 +4,28 @@
         <meta charset="utf-8">
         <title>ログイン画面</title>
         <meta name="description" content="説明文">
+        <link rel="stylesheet" href="./login.css">
     </head>
     <body>
         <header>
+            <a id="left-side">TODOリスト</a>
             <div>
-                <a>TODOリスト</a>
-                <a>SIGNIN</a>
-                <a>SIGNUP</a>
+                <a class="header-text">SIGNIN</a>
+                <a class="header-text">SIGNUP</a>
             </div>
-        </header>
-        <div>
+            </header>
+        <div class="wrapper">
             <h2>SignIn</h2>
-            <div>
+            <div class="form">
                 <label>Email</label>
                 <input type="text"/>
             </div>
-            <div>
+            <div class="form">
                 <label>Password</label>
                 <input type="password"/>
             </div>
+            <button type="submit">ログイン</button>
         </div>
-        <button type="submit">ログイン</button>
     </body>
     <footer>@2021 TODO_List</footer>
 </html>
