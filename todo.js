@@ -13,12 +13,22 @@ const getTaskPosition = (ul) => {
     return todoList.findIndex(task => task.todo === currentText);
 };
 
+
+// フィルター機能
+let searchTask = document.getElementById('searchTask');
+searchTask.addEventListener('input', function(){
+    let value = searchTask.value
+    let filterList = todoList.filter(task => task.todo.includes(value));
+    readFunction(filterList);
+});
+
+
 // READ機能
-const readFunction = () => {
+const readFunction = (filterList = todoList) => {
     let ul = document.querySelectorAll('ul');
     console.log(`ul要素は${ul}`);    //debug
     ul.forEach(ul => ul.remove());  // 表示を更新するために繰り返し処理でul要素を削除
-    for (num of todoList) {     // ulを作成
+    for (num of filterList) {     // ulを作成
         let ul = document.createElement('ul');
         let check = document.createElement('input');
         check.setAttribute('type','checkbox');
@@ -64,6 +74,7 @@ const readFunction = () => {
                 readFunction();
             });
         });
+
         let deleteButton = document.createElement('button');
         deleteButton.textContent = '削除';
         deleteButton.setAttribute("id","block");
@@ -84,6 +95,7 @@ const readFunction = () => {
                     dialog.close();
                 };
             });
+
         ul.append(check);
         const indexNumber = todoList.findIndex(task => task.todo === anchor.textContent);
         if (todoList[indexNumber].checked === true){
@@ -95,10 +107,8 @@ const readFunction = () => {
         ul.append(deleteButton);
         task.append(ul);
         text.value = "";
-
-        taskCount();
     }
-
+    taskCount();
 }
 
 // タスクの数を取得するメソッド
@@ -124,17 +134,4 @@ addButton.addEventListener('click', function(){
     console.log(todoList);  // debug
     readFunction();
 });
-
-// フィルター機能
-let searchTask = document.getElementById('searchTask');
-searchTask.addEventListener('input', function(){
-    let value = searchTask.value
-    console.log(`イベントによる表示${value}`);
-    console.log("todoリスト：");
-    console.log(todoList);
-    let filter = todoList.filter(task => task.todo.includes(value));
-    console.log("フィルターリスト：");
-    console.log(filter);
-    readFunction(filter);
-})
 
