@@ -127,7 +127,7 @@ addButton.addEventListener('click', function(){
 
 // フィルター機能
 let searchTask = document.getElementById('searchTask');
-searchTask.addEventListener('change', function(){
+searchTask.addEventListener('input', function(){
     let value = searchTask.value
     console.log(`イベントによる表示${value}`);
     console.log("todoリスト：");
