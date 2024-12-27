@@ -125,3 +125,16 @@ addButton.addEventListener('click', function(){
     readFunction();
 });
 
+// フィルター機能
+let searchTask = document.getElementById('searchTask');
+searchTask.addEventListener('change', function(){
+    let value = searchTask.value
+    console.log(`イベントによる表示${value}`);
+    console.log("todoリスト：");
+    console.log(todoList);
+    let filter = todoList.filter(task => task.todo.includes(value));
+    console.log("フィルターリスト：");
+    console.log(filter);
+    readFunction(filter);
+})
+
