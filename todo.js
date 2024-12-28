@@ -122,7 +122,9 @@ const taskCount = () => {
 };
 
 // create機能
-addButton.addEventListener('click', function(){
+
+
+const addTask = (e) => {
     const text = document.getElementById('taskName');
     console.log(`入力値は${text.value}`);    //debug
     const obj = {
@@ -133,5 +135,7 @@ addButton.addEventListener('click', function(){
     todoList.push(obj);
     console.log(todoList);  // debug
     readFunction();
-});
+};
 
+addButton.addEventListener('click', addTask);
+text.addEventListener('change', addTask);
