@@ -26,6 +26,10 @@ input{
 }
 button{
     background-color: black;
+    /* margin-left: 10px; */
+}
+#block{
+    margin-left: 10px;
 }
 #taskCount{
     font-size: large;
