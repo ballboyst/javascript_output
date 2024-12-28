@@ -8,13 +8,21 @@ ul{
     padding-left: 2rem;
 }
 *{
-    margin-right:0.5rem;
-    margin-left: 0.5rem;
+    /* margin-right:0.5rem;
+    margin-left: 0.5rem; */
     color: white;
+}
+#float{
+    display: flex;
+    justify-content: center;
+}
+#add{
+    margin-right: 40px;
 }
 input{
     background-color: rgb(5, 200, 5);
     color: black;
+    height: 25px;
 }
 button{
     background-color: black;
