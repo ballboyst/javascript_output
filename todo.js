@@ -124,7 +124,7 @@ const taskCount = () => {
 // create機能
 
 
-const addTask = (e) => {
+const addTask = () => {
     const text = document.getElementById('taskName');
     console.log(`入力値は${text.value}`);    //debug
     const obj = {
