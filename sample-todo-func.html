@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODOリスト</title>
+</head>
+<body>
+    <h1>TODOリスト</h1>
+    <input type="text" id="taskName" placeholder="タスクを追加">
+    <button id="add">追加</button>
+    <input type="text" id="searchTask" placeholder="タスクを検索">
+    <ul id="task"></ul>
+    <div id="taskCount"></div>
+
+    <script>
+        const todoList = [];
+        const taskContainer = document.getElementById('task');
+        const taskCountLine = document.getElementById('taskCount');
+
+        const renderTasks = (filter = '') => {
+            taskContainer.innerHTML = ''; // Clear existing tasks
+            const filteredTasks = todoList.filter(task => task.todo.includes(filter));
+            filteredTasks.forEach((task, index) => {
+                const li = document.createElement('li');
+                li.textContent = task.todo;
+
+                const check = document.createElement('input');
+                check.type = 'checkbox';
+                check.checked = task.checked;
+                check.addEventListener('change', () => {
+                    task.checked = check.checked;
+                    updateTaskCount();
+                });
+
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = '削除';
+                deleteButton.addEventListener('click', () => {
+                    todoList.splice(index, 1);
+                    renderTasks(filter);
+                });
+
+                li.appendChild(check);
+                li.appendChild(deleteButton);
+                taskContainer.appendChild(li);
+            });
+            updateTaskCount();
+        };
+
+        const updateTaskCount = () => {
+            const totalTasks = todoList.length;
+            const completedTasks = todoList.filter(task => task.checked).length;
+            taskCountLine.textContent = `全てのタスク：${totalTasks}　完了済み：${completedTasks}`;
+        };
+
+        document.getElementById('add').addEventListener('click', () => {
+            const taskNameInput = document.getElementById('taskName');
+            const taskName = taskNameInput.value.trim();
+            if (taskName) {
+                todoList.push({ todo: taskName, checked: false });
+                taskNameInput.value = ''; // Clear input
+                renderTasks();
+            }
+        });
+
+        document.getElementById('searchTask').addEventListener('input', (event) => {
+            const searchValue = event.target.value.trim();
+            renderTasks(searchValue);
+        });
+    </script>
+</body>
+</html>
