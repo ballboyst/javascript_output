@@ -18,18 +18,18 @@ const addTodo = () => {
     console.log(todoList);
     taskName.value = ""; 
     let ul = document.createElement("ul");
-    let checkbox = document.createElement("checkbox");
+    let checkbox = document.createElement("input");
+    checkbox.setAttribute("type","checkbox");
     let anchor = document.createElement("a");
     let updateButton = document.createElement("button");
     updateButton.textContent = "編集";
-    updateButton.setAttribute("name", "編集");
     let deleteButton = document.createElement("button");
-    deleteButton.setAttribute("name", "削除")
-    ul.appendChild(checkbox);
-    ul.appendChild(anchor);
+    deleteButton.textContent="削除";
     todoList.forEach((todo) => {
         anchor.textContent = todo.todo;
         task.append(ul);
+        ul.append(anchor);
         ul.append(updateButton);
+        ul.append(deleteButton);
     });
 }
