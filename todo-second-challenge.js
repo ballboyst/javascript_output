@@ -23,9 +23,9 @@ const addTodo = () => {
 const reload = () =>{
     let ul = document.querySelectorAll('ul');
     ul.forEach(ul => ul.remove());
-    let cul = document.createElement('ul');
     
     for (todo of todoList){
+        let ul = document.createElement('ul');
         let checkbox = document.createElement("input");
         checkbox.setAttribute("type","checkbox");
         let anchor = document.createElement("a");
@@ -42,10 +42,10 @@ const reload = () =>{
             console.log(todoList);
             reload();
         })
-        cul.append(anchor);
-        cul.append(updateButton);
-        cul.append(deleteButton);
-        task.append(cul)
+        ul.append(anchor);
+        ul.append(updateButton);
+        ul.append(deleteButton);
+        task.append(ul)
         };
     };
 
