@@ -32,8 +32,20 @@ const reload = () =>{
         anchor.textContent = todo.todo
         let updateButton = document.createElement("button");
         updateButton.textContent = "編集";
+        // 編集機能
+        updateButton.addEventListener('click', function(){
+            let index = todoList.findIndex(
+                (task) => task.todo === anchor.textContent
+            );
+            let currentText = anchor.textContent;
+            let update = window.prompt('内容を修正してください', currentText);
+            todoList[index]['todo'] = update;
+            reload();
+            }
+        );
         let deleteButton = document.createElement("button");
         deleteButton.textContent="削除";
+        // 削除機能
         deleteButton.addEventListener('click', function(){
             let index = todoList.findIndex(
                 (task) => task.todo === anchor.textContent
