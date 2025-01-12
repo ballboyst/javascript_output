@@ -8,6 +8,17 @@ taskName.addEventListener("change", function(){
     addTodo();
 });
 
+let searchTask = document.getElementById("searchTask");
+const filterChar = () => {
+    let filter = todoList.filter(
+        (task) => task.todo.includes(searchTask.value)
+    );
+    console.log(filter);
+};
+searchTask.addEventListener('input', function(){
+    filterChar();
+});
+
 const addTodo = () => {
     text = taskName.value;
     const obj = {
@@ -43,6 +54,12 @@ const reload = () =>{
             reload();
             }
         );
+        //     let update = window.prompt();
+        //     if (update != null){
+        //         todoList[index]["todo"] = update;
+        //     };
+        //     reload();
+        // });
         let deleteButton = document.createElement("button");
         deleteButton.textContent="削除";
         // 削除機能
