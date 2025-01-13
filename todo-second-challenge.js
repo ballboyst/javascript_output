@@ -9,33 +9,23 @@ taskName.addEventListener("change", function(){
 });
 
 let searchTask = document.getElementById("searchTask");
-const filterChar = () => {
+searchTask.addEventListener('input', function(){
+    reload();
+});
+
+
+// const reload1 = () => {console.log("hello")};
+const reload = () =>{
+    console.log('hello');
+    let ul = document.querySelectorAll('ul');
+    ul.forEach(ul => ul.remove());
     let filter = todoList.filter(
         (task) => task.todo.includes(searchTask.value)
     );
+    console.log(searchTask.value) 
     console.log(filter);
-};
-searchTask.addEventListener('input', function(){
-    filterChar();
-});
-
-const addTodo = () => {
-    text = taskName.value;
-    const obj = {
-        todo:text,
-        done:false
-    };
-    todoList.push(obj);
-    console.log(todoList);
-    taskName.value = "";
-    reload();
-};
-
-const reload = () =>{
-    let ul = document.querySelectorAll('ul');
-    ul.forEach(ul => ul.remove());
     
-    for (todo of todoList){
+    for (todo of filter){
         let ul = document.createElement('ul');
         let checkbox = document.createElement("input");
         checkbox.setAttribute("type","checkbox");
@@ -77,5 +67,15 @@ const reload = () =>{
         task.append(ul)
         };
     };
-
 // add delete update は配列の処理のみやって各処理の最後に表示だけするreadを入れるのが効率的か？
+const addTodo = () => {
+    text = taskName.value;
+    const obj = {
+        todo:text,
+        done:false
+    };
+    todoList.push(obj);
+    console.log(todoList);
+    taskName.value = "";
+    reload();
+};
